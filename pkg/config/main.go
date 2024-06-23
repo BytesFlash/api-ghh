@@ -13,10 +13,10 @@ type Config struct {
 	EnvKeyAppUrl       string `env:"APP_URL" env-default:"http://localhost:3000/"`
 	EnvKeySignKey      string `env:"SIGN_KEY" env-default:"8kzz3S4mVmx3BodlQiba"`
 	EnvKeyContactEmail string `env:"CONTACT_EMAIL" env-default:"nicolas.dev.py@gmail.com"`
-	EnvKeySendgridKey  string `env:"SENDGRID_KEY" env-default:"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"`
+	EnvKeySendgridKey  string `env:"SENDGRID_KEY"`
 
-	EnvKeyPermissionHost  string `env:"PERMISSION_HOST" env-default:"localhost:50051"`
-	EnvKeyPermissionToken string `env:"PERMISSION_TOKEN" env-default:"afd9ec25-4bd7-4884-8106-3822d7e721b4"`
+	EnvKeyPermissionHost  string `env:"PERMISSION_HOST"`
+	EnvKeyPermissionToken string `env:"PERMISSION_TOKEN""`
 
 	EnvKeyDbHost     string `env:"DB_HOST" env-default:"dpg-cps6o2aj1k6c738in0p0-a"`
 	EnvKeyDbName     string `env:"DB_NAME" env-default:"ghhapi"`

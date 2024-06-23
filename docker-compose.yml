@@ -1,0 +1,46 @@
+version: "3.9"
+services:
+  database:
+    image: postgres:alpine
+    restart: 'always'
+    environment:
+      - POSTGRES_USER=ghh-web
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_DB=ghh-api
+      - POSTGRES_INITDB_ARGS=--auth-host=scram-sha-256
+      - DB_EXTENSION=uuid-ossp
+    ports:
+      - "5433:5432"
+    networks:
+      - backend
+    volumes:
+      - data:/var/lib/postgresql/api/data
+      - ./pg-extensions.sql:/docker-entrypoint-initdb.d/uuid-ossp.sql
+    command: -p 5433
+  server:
+    restart: 'always'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - ENVIRONMENT=local
+      - PERMISSION_TOKEN=localadmin
+      - PERMISSION_HOST=authzed:50051
+      - DB_USER=ghh-web
+      - DB_HOST=database
+      - DB_PASS=mysecretpassword
+      - DB_NAME=ghh-api
+      - DB_PORT=5433
+      - DB_TIMEZONE=America/Santiago
+      - PORT=4000
+      - APP_URL=http://localhost:3000/
+    depends_on:
+      - database
+    networks:
+      - backend
+    ports:
+      - "4000:4000"
+volumes:
+  data:
+networks:
+  backend:

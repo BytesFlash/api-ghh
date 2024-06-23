@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jobBaseName
+  namespace: manager
+  labels:
+    app: jobBaseName
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jobBaseName
+  template:
+    metadata:
+      labels:
+        app: jobBaseName
+        version: '{{Version}}'
+        build: 'numberBuildJob'
+    spec:
+      containers:
+        - name: jobBaseName
+          image: imageRegistry/appVersion
+          env:
+            - name: APP_URL
+            - name: CONTACT_EMAIL 
+            - name: DB_HOST 
+            - name: DB_NAME 
+            - name: DB_PASS 
+            - name: DB_PORT 
+            - name: DB_SSL 
+            - name: DB_SSL_CA 
+            - name: DB_SSL_CERT 
+            - name: DB_SSL_KEY 
+            - name: DB_TIMEZONE 
+            - name: DB_USER 
+            - name: ENVIRONMENT
+            - name: PERMISSION_HOST
+            - name: PERMISSION_TOKEN
+            - name: PORT
+            - name: SENDGRID_KEY 
+            - name: SIGN_KEY 
+            - name: WS_OPER 
+            - name: WS_OPER_LATAM
+            - name: WS_PASS
+            - name: WS_PASS_LATAM
+            - name: WS_URL
+            - name: WS_URL_LATAM
+            - name: WS_USER
+            - name: WS_USER_LATAM
+          ports:
+            - containerPort: 5000
+          imagePullPolicy: Always
+          resources: {}
+      restartPolicy: Always
+      hostAliases:
+      - hostnames:
+        - qa.autentia.cl
+        ip: 172.16.18.12
+      
+status: {}

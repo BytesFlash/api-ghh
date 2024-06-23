@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "jobBaseName-ingress"
+  namespace: manager
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/group.name: cl-aut-pre-external-lb
+    alb.ingress.kubernetes.io/load-balancer-name: "cl-aut-pre-external-lb"
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:046417021114:certificate/2ac482e4-79b4-45e5-9849-956c93771559
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
+  labels:
+    app: jobBaseName-ingress
+spec:
+  rules:
+    - host: manager-api-pre.i-med.cl
+      http:
+        paths:
+          - backend:
+              service:
+                name: ssl-redirect
+                port:
+                  name: use-annotation
+            pathType: ImplementationSpecific
+          - backend:
+              service:
+                name: "service-jobBaseName"
+                port:
+                  number: 80
+            pathType: ImplementationSpecific

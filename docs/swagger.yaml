@@ -1,0 +1,2586 @@
+definitions:
+  data.AutentiaRole:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  data.CGIRole:
+    properties:
+      country:
+        type: string
+      from:
+        type: string
+      institution:
+        type: string
+      institution_dni:
+        type: string
+      name:
+        type: string
+      place:
+        type: string
+      system:
+        type: string
+      to:
+        type: string
+    type: object
+  data.CGIUser:
+    properties:
+      dni:
+        type: string
+      email:
+        type: string
+      flag_dec:
+        type: string
+      name:
+        type: string
+      password_date:
+        type: string
+      phone:
+        type: string
+      roles:
+        items:
+          $ref: '#/definitions/data.CGIRole'
+        type: array
+    type: object
+  data.Country:
+    properties:
+      active:
+        type: boolean
+      name:
+        type: string
+    type: object
+  data.Function:
+    properties:
+      active:
+        type: boolean
+      createdAt:
+        type: string
+      deletedAt:
+        $ref: '#/definitions/gorm.DeletedAt'
+      id:
+        type: string
+      module:
+        $ref: '#/definitions/data.Module'
+      name:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  data.Institution:
+    properties:
+      active:
+        type: boolean
+      country:
+        $ref: '#/definitions/data.Country'
+      description:
+        type: string
+      dni:
+        type: string
+      email:
+        type: string
+      flag_dec:
+        type: integer
+      id:
+        type: string
+      name:
+        type: string
+      nemo:
+        type: string
+      owner:
+        $ref: '#/definitions/data.Owner'
+      state:
+        type: integer
+    type: object
+  data.Log:
+    properties:
+      createdAt:
+        type: string
+      detail:
+        type: string
+      id:
+        type: string
+      module:
+        type: string
+      params:
+        type: string
+      person_dni:
+        type: string
+      sensor:
+        type: string
+      user_nickname:
+        type: string
+    type: object
+  data.Module:
+    properties:
+      functions:
+        items:
+          $ref: '#/definitions/data.Function'
+        type: array
+      name:
+        type: string
+    type: object
+  data.Owner:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  data.Role:
+    properties:
+      id:
+        type: string
+      modules:
+        items:
+          $ref: '#/definitions/data.Module'
+        type: array
+      name:
+        type: string
+    type: object
+  data.Sensor:
+    properties:
+      code:
+        type: string
+      country:
+        type: string
+      external_code:
+        type: string
+      id:
+        type: string
+      institution:
+        type: string
+      location:
+        type: string
+      logon_type:
+        type: integer
+      state:
+        type: integer
+      technology:
+        type: string
+    type: object
+  data.User:
+    properties:
+      active:
+        type: boolean
+      country:
+        $ref: '#/definitions/data.Country'
+      dni:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      nick_name:
+        type: string
+      picture:
+        type: string
+      status_user:
+        type: string
+      validated:
+        type: boolean
+    type: object
+  gorm.DeletedAt:
+    properties:
+      time:
+        type: string
+      valid:
+        description: Valid is true if Time is not NULL
+        type: boolean
+    type: object
+  multipart.FileHeader:
+    properties:
+      filename:
+        type: string
+      header:
+        $ref: '#/definitions/textproto.MIMEHeader'
+      size:
+        type: integer
+    type: object
+  routes.AddCGIRolesResponse:
+    properties:
+      data:
+        properties:
+          status:
+            type: boolean
+        type: object
+    type: object
+  routes.AutentiaPersonParams:
+    properties:
+      birthdate:
+        type: string
+      country:
+        type: string
+      description:
+        type: string
+      dni:
+        type: string
+      gender:
+        type: string
+      id:
+        type: string
+      institution:
+        type: string
+      last_name:
+        type: string
+      middle_name:
+        type: string
+      name:
+        type: string
+      names:
+        type: string
+      nro_audit:
+        type: string
+      users_id:
+        type: string
+      version_change:
+        type: string
+    required:
+    - dni
+    type: object
+  routes.CGIRoleParams:
+    properties:
+      country:
+        type: string
+      dni:
+        type: string
+      institution:
+        type: string
+      name:
+        type: string
+    type: object
+  routes.CGIRolesResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/data.CGIUser'
+        type: array
+      last_offset:
+        type: integer
+      offset:
+        type: integer
+      total:
+        type: integer
+    type: object
+  routes.CGIUserRolesResponse:
+    properties:
+      data:
+        $ref: '#/definitions/data.CGIUser'
+    type: object
+  routes.MessageResponse:
+    properties:
+      code:
+        type: integer
+      details:
+        type: string
+    type: object
+  routes.ModuleParams:
+    properties:
+      checked:
+        type: boolean
+      name:
+        type: string
+    required:
+    - checked
+    - name
+    type: object
+  routes.RoleInstParams:
+    properties:
+      institutions:
+        items:
+          $ref: '#/definitions/data.Institution'
+        type: array
+      role:
+        $ref: '#/definitions/data.Role'
+    type: object
+  routes.UserRoleInstParams:
+    properties:
+      roles:
+        items:
+          $ref: '#/definitions/routes.RoleInstParams'
+        type: array
+      user:
+        $ref: '#/definitions/data.User'
+    type: object
+  routes.feedBackParams:
+    properties:
+      browser:
+        type: string
+      message:
+        type: string
+      system:
+        type: string
+      url:
+        type: string
+    type: object
+  routes.feedbackResponse:
+    properties:
+      status:
+        type: boolean
+    type: object
+  routes.institutionCreateParams:
+    properties:
+      country:
+        type: string
+      dec:
+        type: integer
+      description:
+        type: string
+      dni:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      nemo:
+        type: string
+      owner:
+        type: string
+      state:
+        type: integer
+      verified:
+        type: string
+    required:
+    - country
+    - dni
+    - email
+    - owner
+    type: object
+  routes.institutionUpdateParams:
+    properties:
+      country:
+        type: string
+      dec:
+        type: integer
+      description:
+        type: string
+      email:
+        type: string
+      owner:
+        type: string
+      state:
+        type: integer
+    required:
+    - country
+    type: object
+  routes.logParams:
+    properties:
+      input:
+        type: string
+      output:
+        type: string
+      resource:
+        type: string
+    required:
+    - input
+    - output
+    - resource
+    type: object
+  routes.loginParams:
+    properties:
+      user:
+        properties:
+          nickname:
+            type: string
+          password:
+            type: string
+        required:
+        - nickname
+        - password
+        type: object
+    type: object
+  routes.paramsAutentiaRole:
+    properties:
+      name:
+        type: string
+    type: object
+  routes.paramsDevice:
+    properties:
+      datajson:
+        type: string
+      name:
+        type: string
+    type: object
+  routes.passwordParams:
+    properties:
+      country:
+        type: string
+      institution:
+        type: string
+      password:
+        type: string
+      system:
+        type: string
+    type: object
+  routes.recoveryParams:
+    properties:
+      email:
+        type: string
+      nickname:
+        type: string
+    required:
+    - email
+    - nickname
+    type: object
+  routes.response:
+    properties:
+      data:
+        $ref: '#/definitions/data.User'
+    type: object
+  routes.responseAudit:
+    properties:
+      data: {}
+    type: object
+  routes.responseInstitution:
+    properties:
+      data:
+        description: Data data.Sensor `json:"data"`
+    type: object
+  routes.responsePasswords:
+    properties:
+      data:
+        properties:
+          status:
+            type: boolean
+        type: object
+    type: object
+  routes.responsePerson:
+    properties:
+      data: {}
+    type: object
+  routes.responseSensor:
+    properties:
+      data:
+        $ref: '#/definitions/data.Sensor'
+    type: object
+  routes.responseSensorExport:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/data.Sensor'
+        type: array
+    type: object
+  routes.responseSensorList:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/data.Sensor'
+        type: array
+      total:
+        type: integer
+    type: object
+  routes.responseStorage:
+    properties:
+      message:
+        type: string
+      result:
+        $ref: '#/definitions/routes.storageResult'
+      status:
+        type: integer
+    type: object
+  routes.responseValidation:
+    properties:
+      status:
+        type: boolean
+    type: object
+  routes.roleBollResponse:
+    properties:
+      code:
+        type: integer
+      details:
+        type: boolean
+    type: object
+  routes.roleInstitutionParams:
+    properties:
+      roles:
+        items:
+          $ref: '#/definitions/routes.roleParams'
+        type: array
+    required:
+    - roles
+    type: object
+  routes.roleModulesResponse:
+    properties:
+      data:
+        $ref: '#/definitions/routes.rolesUpdateParams'
+    type: object
+  routes.roleParams:
+    properties:
+      name:
+        type: string
+    type: object
+  routes.roleResp:
+    properties:
+      checked:
+        type: boolean
+      name:
+        type: string
+    type: object
+  routes.rolesParams:
+    properties:
+      modules:
+        items:
+          $ref: '#/definitions/routes.ModuleParams'
+        type: array
+      name:
+        type: string
+    required:
+    - modules
+    - name
+    type: object
+  routes.rolesUpdateParams:
+    properties:
+      modules:
+        items:
+          $ref: '#/definitions/routes.ModuleParams'
+        type: array
+    required:
+    - modules
+    type: object
+  routes.sensorAddParams:
+    properties:
+      code:
+        type: string
+      country:
+        type: string
+      external:
+        type: string
+      institution:
+        type: string
+      location:
+        type: string
+      logon:
+        type: string
+      profile:
+        type: string
+      state:
+        type: string
+    type: object
+  routes.sensorUpdateParams:
+    properties:
+      code:
+        type: string
+      country:
+        type: string
+      external:
+        type: string
+      institution:
+        type: string
+      location:
+        type: string
+      logon:
+        type: string
+      profile:
+        type: string
+      state:
+        type: string
+      technology:
+        type: string
+    type: object
+  routes.storageResult:
+    properties:
+      code:
+        type: string
+      url:
+        type: string
+    type: object
+  routes.updateUserParams:
+    properties:
+      country:
+        type: string
+      description:
+        type: string
+      dni:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      nickname:
+        type: string
+      password:
+        type: string
+      status_user:
+        type: string
+    type: object
+  routes.userParams:
+    properties:
+      country:
+        type: string
+      description:
+        type: string
+      dni:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      nickname:
+        type: string
+      password:
+        type: string
+    required:
+    - country
+    - dni
+    - email
+    - name
+    - nickname
+    type: object
+  routes.userRoleParams:
+    properties:
+      institutions:
+        items:
+          $ref: '#/definitions/routes.roleParams'
+        type: array
+      nickname:
+        type: string
+      roles:
+        items:
+          $ref: '#/definitions/routes.roleParams'
+        type: array
+    required:
+    - institutions
+    - nickname
+    - roles
+    type: object
+  routes.userRoleResponse:
+    properties:
+      roles:
+        items:
+          $ref: '#/definitions/routes.roleResp'
+        type: array
+    type: object
+  routes.userStruct:
+    properties:
+      active:
+        type: boolean
+      country:
+        $ref: '#/definitions/data.Country'
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      nick_name:
+        type: string
+      picture:
+        type: string
+      roles:
+        items:
+          $ref: '#/definitions/routes.roleParams'
+        type: array
+      status_user:
+        type: string
+      validated:
+        type: boolean
+    type: object
+  routes.userValidateParams:
+    properties:
+      token:
+        type: string
+    type: object
+  routes.validateParams:
+    properties:
+      password:
+        type: string
+      recovery:
+        type: boolean
+      token:
+        type: string
+    type: object
+  textproto.MIMEHeader:
+    additionalProperties:
+      items:
+        type: string
+      type: array
+    type: object
+info:
+  contact: {}
+  description: api autentia manager
+  title: Autentia Manager Documentation
+  version: "1"
+paths:
+  /autentia/audits/{code}:
+    get:
+      consumes:
+      - application/json
+      description: get autentia audits
+      parameters:
+      - description: code
+        in: path
+        name: code
+        required: true
+        type: string
+      - description: country
+        in: query
+        name: country
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responseAudit'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: get autentia audits
+      tags:
+      - autentia audits
+  /autentia/institutions:
+    get:
+      consumes:
+      - application/json
+      description: get autentia institutions
+      parameters:
+      - description: country
+        in: query
+        name: country
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responseInstitution'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: get autentia institutions
+      tags:
+      - autentia institutions
+    post:
+      consumes:
+      - application/json
+      description: create institution
+      parameters:
+      - description: institution
+        in: body
+        name: institution
+        required: true
+        schema:
+          $ref: '#/definitions/routes.institutionCreateParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responseInstitution'
+        "406":
+          description: Not Acceptable
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: create institution
+      tags:
+      - autentia institutions
+  /autentia/institutions/{name}:
+    delete:
+      consumes:
+      - application/json
+      description: update institution
+      parameters:
+      - description: name
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: country
+        in: query
+        name: country
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responseInstitution'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: update institution
+      tags:
+      - autentia institutions
+    get:
+      consumes:
+      - application/json
+      description: get autentia institution
+      parameters:
+      - description: name
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: country
+        in: query
+        name: country
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responseInstitution'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: get autentia institution
+      tags:
+      - autentia institutions
+    put:
+      consumes:
+      - application/json
+      description: update institution
+      parameters:
+      - description: name
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: institution
+        in: body
+        name: institution
+        required: true
+        schema:
+          $ref: '#/definitions/routes.institutionUpdateParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responseInstitution'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: update institution
+      tags:
+      - autentia institutions
+  /autentia/institutions/all:
+    get:
+      consumes:
+      - application/json
+      description: get all autentia institutions
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responseInstitution'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: get all autentia institutions
+      tags:
+      - autentia institutions
+  /autentia/passwords/{dni}:
+    put:
+      consumes:
+      - application/json
+      description: put autentia password
+      parameters:
+      - description: dni
+        in: path
+        name: dni
+        required: true
+        type: string
+      - description: password
+        in: body
+        name: password
+        required: true
+        schema:
+          $ref: '#/definitions/routes.passwordParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responsePasswords'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: put autentia password
+      tags:
+      - autentia passwords
+  /autentia/persons/{dni}:
+    get:
+      consumes:
+      - application/json
+      description: autentia person dni get
+      parameters:
+      - description: dni
+        in: path
+        name: dni
+        required: true
+        type: string
+      - description: country
+        in: query
+        name: country
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responsePerson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: autentia person dni get
+      tags:
+      - autentia persons
+  /autentia/persons/all/{dni}:
+    get:
+      consumes:
+      - application/json
+      description: autentia person get
+      parameters:
+      - description: dni
+        in: path
+        name: dni
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responsePerson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: autentia person get
+      tags:
+      - autentia persons
+  /autentia/persons/compare/{dni}:
+    get:
+      consumes:
+      - application/json
+      description: autentia person compare get
+      parameters:
+      - description: dni
+        in: path
+        name: dni
+        required: true
+        type: string
+      - description: version
+        in: query
+        name: version
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responsePerson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: autentia person compare get
+      tags:
+      - autentia persons
+  /autentia/persons/document:
+    post:
+      consumes:
+      - multipart/form-data
+      description: autentia person post document
+      parameters:
+      - in: formData
+        name: delimiter
+        type: string
+      - in: formData
+        name: descriptions
+        type: string
+      - in: formData
+        name: dni
+        type: string
+      - in: formData
+        name: name
+        type: string
+      - in: formData
+        name: person_id
+        type: string
+      - in: formData
+        name: uri
+        type: string
+      - description: people
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responseStorage'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: autentia person post document
+      tags:
+      - autentia persons
+  /autentia/persons/document/status:
+    get:
+      consumes:
+      - application/json
+      description: autentia person status get
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: autentia person status get
+      tags:
+      - autentia persons
+  /autentia/persons/document/version/{dni}:
+    get:
+      consumes:
+      - application/json
+      description: autentia person document version get
+      parameters:
+      - description: dni
+        in: path
+        name: dni
+        required: true
+        type: string
+      - description: version
+        in: query
+        name: version
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responsePerson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: autentia person document version get
+      tags:
+      - autentia persons
+  /autentia/persons/documents:
+    delete:
+      consumes:
+      - application/json
+      description: autentia person document delete
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: autentia person document delete
+      tags:
+      - autentia persons
+  /autentia/persons/documents/{dni}:
+    get:
+      consumes:
+      - application/json
+      description: autentia person document get
+      parameters:
+      - description: dni
+        in: path
+        name: dni
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responsePerson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: autentia person document get
+      tags:
+      - autentia persons
+  /autentia/persons/manager/new:
+    post:
+      consumes:
+      - application/json
+      description: autentia person post new
+      parameters:
+      - description: person
+        in: body
+        name: person
+        required: true
+        schema:
+          $ref: '#/definitions/routes.AutentiaPersonParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responsePerson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: autentia person post new
+      tags:
+      - autentia persons
+  /autentia/persons/manager/old:
+    post:
+      consumes:
+      - application/json
+      description: autentia person post old
+      parameters:
+      - description: person
+        in: body
+        name: person
+        required: true
+        schema:
+          $ref: '#/definitions/routes.AutentiaPersonParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responsePerson'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: autentia person post old
+      tags:
+      - autentia persons
+  /autentia/roles:
+    delete:
+      consumes:
+      - application/json
+      description: delete autentia role
+      parameters:
+      - description: role
+        in: body
+        name: role
+        required: true
+        schema:
+          $ref: '#/definitions/routes.paramsAutentiaRole'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: delete autentia role
+      tags:
+      - autentia roles
+    get:
+      consumes:
+      - application/json
+      description: delete autentia role
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/data.AutentiaRole'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: delete autentia role
+      tags:
+      - autentia roles
+    post:
+      consumes:
+      - application/json
+      description: post autentia role
+      parameters:
+      - description: role
+        in: body
+        name: role
+        required: true
+        schema:
+          $ref: '#/definitions/routes.paramsAutentiaRole'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: post autentia role
+      tags:
+      - autentia roles
+  /autentia/roles/cgi:
+    delete:
+      consumes:
+      - application/json
+      description: delete cgi user roles
+      parameters:
+      - description: roles
+        in: body
+        name: roles
+        required: true
+        schema:
+          $ref: '#/definitions/routes.CGIRoleParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.AddCGIRolesResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: delete cgi user roles
+      tags:
+      - autentia roles
+    get:
+      consumes:
+      - application/json
+      description: get cgi roles
+      parameters:
+      - description: country
+        in: query
+        name: country
+        required: true
+        type: string
+      - description: institution
+        in: query
+        name: institution
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.CGIRolesResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: get cgi roles
+      tags:
+      - autentia roles
+  /autentia/roles/user:
+    post:
+      consumes:
+      - application/json
+      description: post cgi user roles
+      parameters:
+      - description: roles
+        in: body
+        name: roles
+        required: true
+        schema:
+          $ref: '#/definitions/routes.CGIRoleParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.AddCGIRolesResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: post cgi user roles
+      tags:
+      - autentia roles
+  /autentia/roles/user/{dni}:
+    get:
+      consumes:
+      - application/json
+      description: get cgi user roles
+      parameters:
+      - description: dni
+        in: path
+        name: dni
+        required: true
+        type: string
+      - description: country
+        in: query
+        name: country
+        required: true
+        type: string
+      - description: institution
+        in: query
+        name: institution
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.CGIUserRolesResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: get cgi user roles
+      tags:
+      - autentia roles
+  /autentia/sensors:
+    get:
+      consumes:
+      - application/json
+      description: get autentia sensor
+      parameters:
+      - description: country
+        in: query
+        name: country
+        required: true
+        type: string
+      - description: institution
+        in: query
+        name: institution
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responseSensorList'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: get autentia sensor
+      tags:
+      - autentia sensors
+    post:
+      consumes:
+      - application/json
+      description: post autentia sensor
+      parameters:
+      - description: sensor
+        in: body
+        name: sensor
+        required: true
+        schema:
+          $ref: '#/definitions/routes.sensorAddParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Sensor registrado correctamente
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: post autentia sensor
+      tags:
+      - autentia sensors
+  /autentia/sensors/{code}:
+    get:
+      consumes:
+      - application/json
+      description: get autentia sensor code
+      parameters:
+      - description: code
+        in: path
+        name: code
+        required: true
+        type: string
+      - description: country
+        in: query
+        name: country
+        required: true
+        type: string
+      - description: technology
+        in: query
+        name: technology
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responseSensor'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: get autentia sensor code
+      tags:
+      - autentia sensors
+  /autentia/sensors/batch:
+    post:
+      consumes:
+      - multipart/form-data
+      description: post batch autentia sensor
+      parameters:
+      - in: formData
+        name: country
+        type: string
+      - in: formData
+        name: delimiter
+        type: string
+      - in: formData
+        name: profile
+        type: string
+      - description: sensors
+        in: formData
+        name: sensors
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Sensor registrado correctamente
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: post batch autentia sensor
+      tags:
+      - autentia sensors
+  /autentia/sensors/owner/{owner}:
+    get:
+      consumes:
+      - application/json
+      description: get autentia sensor owner
+      parameters:
+      - description: owner
+        in: path
+        name: owner
+        required: true
+        type: string
+      - description: country
+        in: query
+        name: country
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responseSensorExport'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: get autentia sensor owner
+      tags:
+      - autentia sensors
+  /autentia/sensors/update:
+    put:
+      consumes:
+      - application/json
+      description: put autentia sensor
+      parameters:
+      - description: sensor
+        in: body
+        name: sensor
+        required: true
+        schema:
+          $ref: '#/definitions/routes.sensorUpdateParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Sensor actualizado correctamente
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: put autentia sensor
+      tags:
+      - autentia sensors
+  /autentia/sensors/update/batch:
+    post:
+      consumes:
+      - multipart/form-data
+      description: post batch autentia sensor
+      parameters:
+      - in: formData
+        name: country
+        type: string
+      - in: formData
+        name: delimiter
+        type: string
+      - in: formData
+        name: profile
+        type: string
+      - description: sensors
+        in: formData
+        name: sensors
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Sensor actualizado correctamente
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: post batch autentia sensor
+      tags:
+      - autentia sensors
+  /device:
+    get:
+      consumes:
+      - application/json
+      description: get device
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: get device
+      tags:
+      - device
+    post:
+      consumes:
+      - application/json
+      description: post device
+      parameters:
+      - description: device
+        in: body
+        name: device
+        required: true
+        schema:
+          $ref: '#/definitions/routes.paramsDevice'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: post device
+      tags:
+      - device
+  /institutions/sync/{country}:
+    get:
+      consumes:
+      - application/json
+      description: institutions
+      parameters:
+      - description: country
+        in: path
+        name: country
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/data.Institution'
+            type: array
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: institutions
+      tags:
+      - institution
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: login
+      parameters:
+      - description: login
+        in: body
+        name: login
+        required: true
+        schema:
+          $ref: '#/definitions/routes.loginParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Inició sesión correctamente
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      summary: login
+      tags:
+      - login
+  /logout:
+    delete:
+      consumes:
+      - application/json
+      description: user logout
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+        "400":
+          description: Usuario no activo
+      security:
+      - barerToken: []
+      summary: user logout
+      tags:
+      - user
+  /logs/{date}:
+    get:
+      consumes:
+      - application/json
+      description: get logs
+      parameters:
+      - description: date
+        in: path
+        name: date
+        required: true
+        type: string
+      - description: starthour
+        in: query
+        name: starthour
+        required: true
+        type: string
+      - description: finishhour
+        in: query
+        name: finishhour
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/data.Log'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: get Logs
+      tags:
+      - log
+  /logs/trx:
+    post:
+      consumes:
+      - application/json
+      description: post logs
+      parameters:
+      - description: log
+        in: body
+        name: log
+        required: true
+        schema:
+          $ref: '#/definitions/routes.logParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: post Logs
+      tags:
+      - log
+  /modules:
+    get:
+      consumes:
+      - application/json
+      description: modules
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/data.Module'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: modules
+      tags:
+      - module
+  /modules/{name}:
+    delete:
+      consumes:
+      - application/json
+      description: delete modules
+      parameters:
+      - description: name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: delete modules
+      tags:
+      - module
+  /roles:
+    get:
+      consumes:
+      - application/json
+      description: get roles
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/data.Role'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: roles
+      tags:
+      - role
+  /roles/{role}:
+    put:
+      consumes:
+      - application/json
+      description: edit role
+      parameters:
+      - description: role
+        in: path
+        name: role
+        required: true
+        type: string
+      - description: name
+        in: query
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Se ha actualizado el rol correctamente
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: edit role
+      tags:
+      - role
+  /roles/active/{role}:
+    get:
+      consumes:
+      - application/json
+      description: get active role
+      parameters:
+      - description: role
+        in: path
+        name: role
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: active role
+      tags:
+      - role
+  /roles/institution:
+    post:
+      consumes:
+      - application/json
+      description: get role institution
+      parameters:
+      - description: institution
+        in: body
+        name: institution
+        required: true
+        schema:
+          $ref: '#/definitions/routes.roleInstitutionParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: role institution
+      tags:
+      - role
+  /roles/modules:
+    post:
+      consumes:
+      - application/json
+      description: post role modules
+      parameters:
+      - description: roles
+        in: body
+        name: roles
+        required: true
+        schema:
+          $ref: '#/definitions/routes.rolesParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: role modules
+      tags:
+      - role
+  /roles/modules/{role}:
+    delete:
+      consumes:
+      - application/json
+      description: delete role modules
+      parameters:
+      - description: role
+        in: path
+        name: role
+        required: true
+        type: string
+      - description: delete
+        in: query
+        name: delete
+        required: true
+        type: boolean
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.roleBollResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/routes.roleBollResponse'
+      security:
+      - barerToken: []
+      summary: delete role modules
+      tags:
+      - role
+    get:
+      consumes:
+      - application/json
+      description: get role
+      parameters:
+      - description: role
+        in: path
+        name: role
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.roleModulesResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: role
+      tags:
+      - role
+    put:
+      consumes:
+      - application/json
+      description: put role modules
+      parameters:
+      - description: role
+        in: path
+        name: role
+        required: true
+        type: string
+      - description: roles
+        in: body
+        name: roles
+        required: true
+        schema:
+          $ref: '#/definitions/routes.rolesUpdateParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: role edit modules
+      tags:
+      - role
+  /users:
+    get:
+      consumes:
+      - application/json
+      description: users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/routes.userStruct'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: users
+      tags:
+      - user
+    post:
+      consumes:
+      - application/json
+      description: create user
+      parameters:
+      - description: user
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/routes.userParams'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Usuario Creado
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: user
+      tags:
+      - user
+  /users/{nickName}:
+    delete:
+      consumes:
+      - application/json
+      description: user delete
+      parameters:
+      - description: nickName
+        in: path
+        name: nickName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: user delete
+      tags:
+      - user
+    put:
+      consumes:
+      - application/json
+      description: update user
+      parameters:
+      - description: user
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/routes.updateUserParams'
+      - description: userIdentifier
+        in: path
+        name: nickName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: El usuario se ha actualizado con éxito
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: update user
+      tags:
+      - user
+  /users/{nickName}/reconfirmation:
+    post:
+      consumes:
+      - application/json
+      description: user reconfirmation
+      parameters:
+      - description: nickName
+        in: path
+        name: nickName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/routes.response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      summary: Reconfirmation
+      tags:
+      - login
+  /users/{userIdentifier}:
+    get:
+      consumes:
+      - application/json
+      description: user get
+      parameters:
+      - description: userIdentifier
+        in: path
+        name: userIdentifier
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: user get
+      tags:
+      - user
+  /users/activate:
+    post:
+      consumes:
+      - application/json
+      description: activate user
+      parameters:
+      - description: activate
+        in: body
+        name: activate
+        required: true
+        schema:
+          $ref: '#/definitions/routes.userValidateParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responseValidation'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      summary: activate
+      tags:
+      - login
+  /users/confirm:
+    post:
+      consumes:
+      - application/json
+      description: confirm user
+      parameters:
+      - description: confirm
+        in: body
+        name: recovery
+        required: true
+        schema:
+          $ref: '#/definitions/routes.validateParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Confirmación de usuario exitosa
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      summary: Confirm
+      tags:
+      - login
+  /users/feedback:
+    post:
+      consumes:
+      - application/json
+      description: user feedback
+      parameters:
+      - description: feedback
+        in: body
+        name: feedback
+        required: true
+        schema:
+          $ref: '#/definitions/routes.feedBackParams'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/routes.feedbackResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: user feedback
+      tags:
+      - user
+  /users/guest:
+    post:
+      description: login guest
+      responses:
+        "200":
+          description: Inició sesión correctamente
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      summary: login guest
+      tags:
+      - login
+  /users/institutions/roles:
+    put:
+      consumes:
+      - application/json
+      description: update user roles
+      parameters:
+      - description: user
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/routes.userRoleParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Se han asignado los roles correctamente
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: update user roles
+      tags:
+      - user
+  /users/institutions/roles/{nickName}:
+    get:
+      consumes:
+      - application/json
+      description: get user roles
+      parameters:
+      - description: nickName
+        in: path
+        name: nickName
+        required: true
+        type: string
+      - description: institution
+        in: query
+        name: institution
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.userRoleResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: get user roles
+      tags:
+      - user
+  /users/introspection:
+    get:
+      consumes:
+      - application/json
+      description: instrospection
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.response'
+      security:
+      - barerToken: []
+      summary: user instrospection
+      tags:
+      - user
+  /users/recovery:
+    post:
+      consumes:
+      - application/json
+      description: recovery pass
+      parameters:
+      - description: recovery
+        in: body
+        name: recovery
+        required: true
+        schema:
+          $ref: '#/definitions/routes.recoveryParams'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Se enviará correo para recuperar su contraseña a la dirección
+            example@mail.com
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      summary: Recovery
+      tags:
+      - login
+  /users/roles:
+    post:
+      consumes:
+      - application/json
+      description: user roles
+      parameters:
+      - description: roles
+        in: body
+        name: roles
+        required: true
+        schema:
+          $ref: '#/definitions/routes.userRoleParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Se han asignado los roles correctamente
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: user roles
+      tags:
+      - user
+  /users/roles/{nickName}:
+    get:
+      consumes:
+      - application/json
+      description: user
+      parameters:
+      - description: nickName
+        in: path
+        name: nickName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.UserRoleInstParams'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: user
+      tags:
+      - user
+  /users/roles/{role}:
+    delete:
+      consumes:
+      - application/json
+      description: delete user roles
+      parameters:
+      - description: role
+        in: path
+        name: role
+        required: true
+        type: string
+      - description: nickname
+        in: query
+        name: nickname
+        required: true
+        type: string
+      - description: institution
+        in: query
+        name: institution
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Se ha eliminado el rol correctamente
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      security:
+      - barerToken: []
+      summary: delete user roles
+      tags:
+      - user
+  /users/validate:
+    post:
+      consumes:
+      - application/json
+      description: validate user
+      parameters:
+      - description: validate
+        in: body
+        name: validate
+        required: true
+        schema:
+          $ref: '#/definitions/routes.userValidateParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/routes.responseValidation'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/routes.MessageResponse'
+      summary: Validate
+      tags:
+      - login
+securityDefinitions:
+  barerToken:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

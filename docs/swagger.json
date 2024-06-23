@@ -1,0 +1,4055 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "api autentia manager",
+        "title": "Autentia Manager Documentation",
+        "contact": {},
+        "version": "1"
+    },
+    "paths": {
+        "/autentia/audits/{code}": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "get autentia audits",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia audits"
+                ],
+                "summary": "get autentia audits",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "code",
+                        "name": "code",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "country",
+                        "name": "country",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responseAudit"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/institutions": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "get autentia institutions",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia institutions"
+                ],
+                "summary": "get autentia institutions",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "country",
+                        "name": "country",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responseInstitution"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "create institution",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia institutions"
+                ],
+                "summary": "create institution",
+                "parameters": [
+                    {
+                        "description": "institution",
+                        "name": "institution",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.institutionCreateParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responseInstitution"
+                        }
+                    },
+                    "406": {
+                        "description": "Not Acceptable",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/institutions/all": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "get all autentia institutions",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia institutions"
+                ],
+                "summary": "get all autentia institutions",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responseInstitution"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/institutions/{name}": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "get autentia institution",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia institutions"
+                ],
+                "summary": "get autentia institution",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "name",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "country",
+                        "name": "country",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responseInstitution"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "update institution",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia institutions"
+                ],
+                "summary": "update institution",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "name",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "institution",
+                        "name": "institution",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.institutionUpdateParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responseInstitution"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "update institution",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia institutions"
+                ],
+                "summary": "update institution",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "name",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "country",
+                        "name": "country",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responseInstitution"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/passwords/{dni}": {
+            "put": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "put autentia password",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia passwords"
+                ],
+                "summary": "put autentia password",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "dni",
+                        "name": "dni",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "password",
+                        "name": "password",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.passwordParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responsePasswords"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/persons/all/{dni}": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "autentia person get",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia persons"
+                ],
+                "summary": "autentia person get",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "dni",
+                        "name": "dni",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responsePerson"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/persons/compare/{dni}": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "autentia person compare get",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia persons"
+                ],
+                "summary": "autentia person compare get",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "dni",
+                        "name": "dni",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "version",
+                        "name": "version",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responsePerson"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/persons/document": {
+            "post": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "autentia person post document",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia persons"
+                ],
+                "summary": "autentia person post document",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "delimiter",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "descriptions",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "dni",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "name",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "person_id",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "uri",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "file",
+                        "description": "people",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responseStorage"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/persons/document/status": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "autentia person status get",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia persons"
+                ],
+                "summary": "autentia person status get",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/persons/document/version/{dni}": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "autentia person document version get",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia persons"
+                ],
+                "summary": "autentia person document version get",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "dni",
+                        "name": "dni",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "version",
+                        "name": "version",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responsePerson"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/persons/documents": {
+            "delete": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "autentia person document delete",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia persons"
+                ],
+                "summary": "autentia person document delete",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/persons/documents/{dni}": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "autentia person document get",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia persons"
+                ],
+                "summary": "autentia person document get",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "dni",
+                        "name": "dni",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responsePerson"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/persons/manager/new": {
+            "post": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "autentia person post new",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia persons"
+                ],
+                "summary": "autentia person post new",
+                "parameters": [
+                    {
+                        "description": "person",
+                        "name": "person",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.AutentiaPersonParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responsePerson"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/persons/manager/old": {
+            "post": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "autentia person post old",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia persons"
+                ],
+                "summary": "autentia person post old",
+                "parameters": [
+                    {
+                        "description": "person",
+                        "name": "person",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.AutentiaPersonParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responsePerson"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/persons/{dni}": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "autentia person dni get",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia persons"
+                ],
+                "summary": "autentia person dni get",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "dni",
+                        "name": "dni",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "country",
+                        "name": "country",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responsePerson"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/roles": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "delete autentia role",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia roles"
+                ],
+                "summary": "delete autentia role",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/data.AutentiaRole"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "post autentia role",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia roles"
+                ],
+                "summary": "post autentia role",
+                "parameters": [
+                    {
+                        "description": "role",
+                        "name": "role",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.paramsAutentiaRole"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "delete autentia role",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia roles"
+                ],
+                "summary": "delete autentia role",
+                "parameters": [
+                    {
+                        "description": "role",
+                        "name": "role",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.paramsAutentiaRole"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/roles/cgi": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "get cgi roles",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia roles"
+                ],
+                "summary": "get cgi roles",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "country",
+                        "name": "country",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "institution",
+                        "name": "institution",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.CGIRolesResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "delete cgi user roles",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia roles"
+                ],
+                "summary": "delete cgi user roles",
+                "parameters": [
+                    {
+                        "description": "roles",
+                        "name": "roles",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.CGIRoleParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.AddCGIRolesResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/roles/user": {
+            "post": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "post cgi user roles",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia roles"
+                ],
+                "summary": "post cgi user roles",
+                "parameters": [
+                    {
+                        "description": "roles",
+                        "name": "roles",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.CGIRoleParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.AddCGIRolesResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/roles/user/{dni}": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "get cgi user roles",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia roles"
+                ],
+                "summary": "get cgi user roles",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "dni",
+                        "name": "dni",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "country",
+                        "name": "country",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "institution",
+                        "name": "institution",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.CGIUserRolesResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/sensors": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "get autentia sensor",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia sensors"
+                ],
+                "summary": "get autentia sensor",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "country",
+                        "name": "country",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "institution",
+                        "name": "institution",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responseSensorList"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "post autentia sensor",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia sensors"
+                ],
+                "summary": "post autentia sensor",
+                "parameters": [
+                    {
+                        "description": "sensor",
+                        "name": "sensor",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.sensorAddParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sensor registrado correctamente"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/sensors/batch": {
+            "post": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "post batch autentia sensor",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia sensors"
+                ],
+                "summary": "post batch autentia sensor",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "country",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "delimiter",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "profile",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "file",
+                        "description": "sensors",
+                        "name": "sensors",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sensor registrado correctamente"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/sensors/owner/{owner}": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "get autentia sensor owner",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia sensors"
+                ],
+                "summary": "get autentia sensor owner",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "owner",
+                        "name": "owner",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "country",
+                        "name": "country",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responseSensorExport"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/sensors/update": {
+            "put": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "put autentia sensor",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia sensors"
+                ],
+                "summary": "put autentia sensor",
+                "parameters": [
+                    {
+                        "description": "sensor",
+                        "name": "sensor",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.sensorUpdateParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sensor actualizado correctamente"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/sensors/update/batch": {
+            "post": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "post batch autentia sensor",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia sensors"
+                ],
+                "summary": "post batch autentia sensor",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "country",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "delimiter",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "name": "profile",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "file",
+                        "description": "sensors",
+                        "name": "sensors",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sensor actualizado correctamente"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/autentia/sensors/{code}": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "get autentia sensor code",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "autentia sensors"
+                ],
+                "summary": "get autentia sensor code",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "code",
+                        "name": "code",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "country",
+                        "name": "country",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "technology",
+                        "name": "technology",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responseSensor"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/device": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "get device",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "device"
+                ],
+                "summary": "get device",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "post device",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "device"
+                ],
+                "summary": "post device",
+                "parameters": [
+                    {
+                        "description": "device",
+                        "name": "device",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.paramsDevice"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/institutions/sync/{country}": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "institutions",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "institution"
+                ],
+                "summary": "institutions",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "country",
+                        "name": "country",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/data.Institution"
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "description": "login",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "login"
+                ],
+                "summary": "login",
+                "parameters": [
+                    {
+                        "description": "login",
+                        "name": "login",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.loginParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Inició sesión correctamente"
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "delete": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "user logout",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "user logout",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Usuario no activo"
+                    }
+                }
+            }
+        },
+        "/logs/trx": {
+            "post": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "post logs",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "log"
+                ],
+                "summary": "post Logs",
+                "parameters": [
+                    {
+                        "description": "log",
+                        "name": "log",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.logParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/logs/{date}": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "get logs",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "log"
+                ],
+                "summary": "get Logs",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "date",
+                        "name": "date",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "starthour",
+                        "name": "starthour",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "finishhour",
+                        "name": "finishhour",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/data.Log"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/modules": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "modules",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "module"
+                ],
+                "summary": "modules",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/data.Module"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/modules/{name}": {
+            "delete": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "delete modules",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "module"
+                ],
+                "summary": "delete modules",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "name",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/roles": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "get roles",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "role"
+                ],
+                "summary": "roles",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/data.Role"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/roles/active/{role}": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "get active role",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "role"
+                ],
+                "summary": "active role",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "role",
+                        "name": "role",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/roles/institution": {
+            "post": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "get role institution",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "role"
+                ],
+                "summary": "role institution",
+                "parameters": [
+                    {
+                        "description": "institution",
+                        "name": "institution",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.roleInstitutionParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/roles/modules": {
+            "post": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "post role modules",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "role"
+                ],
+                "summary": "role modules",
+                "parameters": [
+                    {
+                        "description": "roles",
+                        "name": "roles",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.rolesParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/roles/modules/{role}": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "get role",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "role"
+                ],
+                "summary": "role",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "role",
+                        "name": "role",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.roleModulesResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "put role modules",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "role"
+                ],
+                "summary": "role edit modules",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "role",
+                        "name": "role",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "roles",
+                        "name": "roles",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.rolesUpdateParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "delete role modules",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "role"
+                ],
+                "summary": "delete role modules",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "role",
+                        "name": "role",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "boolean",
+                        "description": "delete",
+                        "name": "delete",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.roleBollResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/routes.roleBollResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/roles/{role}": {
+            "put": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "edit role",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "role"
+                ],
+                "summary": "edit role",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "role",
+                        "name": "role",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "name",
+                        "name": "name",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Se ha actualizado el rol correctamente"
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "users",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "users",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/routes.userStruct"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "create user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "user",
+                "parameters": [
+                    {
+                        "description": "user",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.userParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Usuario Creado"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/activate": {
+            "post": {
+                "description": "activate user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "login"
+                ],
+                "summary": "activate",
+                "parameters": [
+                    {
+                        "description": "activate",
+                        "name": "activate",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.userValidateParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responseValidation"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/confirm": {
+            "post": {
+                "description": "confirm user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "login"
+                ],
+                "summary": "Confirm",
+                "parameters": [
+                    {
+                        "description": "confirm",
+                        "name": "recovery",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.validateParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Confirmación de usuario exitosa"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/feedback": {
+            "post": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "user feedback",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "user feedback",
+                "parameters": [
+                    {
+                        "description": "feedback",
+                        "name": "feedback",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.feedBackParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/routes.feedbackResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/guest": {
+            "post": {
+                "description": "login guest",
+                "tags": [
+                    "login"
+                ],
+                "summary": "login guest",
+                "responses": {
+                    "200": {
+                        "description": "Inició sesión correctamente"
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/institutions/roles": {
+            "put": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "update user roles",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "update user roles",
+                "parameters": [
+                    {
+                        "description": "user",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.userRoleParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Se han asignado los roles correctamente"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/institutions/roles/{nickName}": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "get user roles",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "get user roles",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "nickName",
+                        "name": "nickName",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "institution",
+                        "name": "institution",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.userRoleResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/introspection": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "instrospection",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "user instrospection",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.response"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/recovery": {
+            "post": {
+                "description": "recovery pass",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "login"
+                ],
+                "summary": "Recovery",
+                "parameters": [
+                    {
+                        "description": "recovery",
+                        "name": "recovery",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.recoveryParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Se enviará correo para recuperar su contraseña a la dirección example@mail.com"
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/roles": {
+            "post": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "user roles",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "user roles",
+                "parameters": [
+                    {
+                        "description": "roles",
+                        "name": "roles",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.userRoleParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Se han asignado los roles correctamente"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/roles/{nickName}": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "nickName",
+                        "name": "nickName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.UserRoleInstParams"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/roles/{role}": {
+            "delete": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "delete user roles",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "delete user roles",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "role",
+                        "name": "role",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "nickname",
+                        "name": "nickname",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "institution",
+                        "name": "institution",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Se ha eliminado el rol correctamente"
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/validate": {
+            "post": {
+                "description": "validate user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "login"
+                ],
+                "summary": "Validate",
+                "parameters": [
+                    {
+                        "description": "validate",
+                        "name": "validate",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.userValidateParams"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.responseValidation"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{nickName}": {
+            "put": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "update user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "update user",
+                "parameters": [
+                    {
+                        "description": "user",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/routes.updateUserParams"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "userIdentifier",
+                        "name": "nickName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El usuario se ha actualizado con éxito"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "user delete",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "user delete",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "nickName",
+                        "name": "nickName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{nickName}/reconfirmation": {
+            "post": {
+                "description": "user reconfirmation",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "login"
+                ],
+                "summary": "Reconfirmation",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "nickName",
+                        "name": "nickName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/routes.response"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{userIdentifier}": {
+            "get": {
+                "security": [
+                    {
+                        "barerToken": []
+                    }
+                ],
+                "description": "user get",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "user get",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "userIdentifier",
+                        "name": "userIdentifier",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routes.response"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/routes.MessageResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "data.AutentiaRole": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.CGIRole": {
+            "type": "object",
+            "properties": {
+                "country": {
+                    "type": "string"
+                },
+                "from": {
+                    "type": "string"
+                },
+                "institution": {
+                    "type": "string"
+                },
+                "institution_dni": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "place": {
+                    "type": "string"
+                },
+                "system": {
+                    "type": "string"
+                },
+                "to": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.CGIUser": {
+            "type": "object",
+            "properties": {
+                "dni": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "flag_dec": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "password_date": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.CGIRole"
+                    }
+                }
+            }
+        },
+        "data.Country": {
+            "type": "object",
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.Function": {
+            "type": "object",
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "deletedAt": {
+                    "$ref": "#/definitions/gorm.DeletedAt"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "module": {
+                    "$ref": "#/definitions/data.Module"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.Institution": {
+            "type": "object",
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "country": {
+                    "$ref": "#/definitions/data.Country"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "dni": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "flag_dec": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "nemo": {
+                    "type": "string"
+                },
+                "owner": {
+                    "$ref": "#/definitions/data.Owner"
+                },
+                "state": {
+                    "type": "integer"
+                }
+            }
+        },
+        "data.Log": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "detail": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "module": {
+                    "type": "string"
+                },
+                "params": {
+                    "type": "string"
+                },
+                "person_dni": {
+                    "type": "string"
+                },
+                "sensor": {
+                    "type": "string"
+                },
+                "user_nickname": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.Module": {
+            "type": "object",
+            "properties": {
+                "functions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.Function"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.Owner": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.Role": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "modules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.Module"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.Sensor": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "external_code": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "institution": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "logon_type": {
+                    "type": "integer"
+                },
+                "state": {
+                    "type": "integer"
+                },
+                "technology": {
+                    "type": "string"
+                }
+            }
+        },
+        "data.User": {
+            "type": "object",
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "country": {
+                    "$ref": "#/definitions/data.Country"
+                },
+                "dni": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "nick_name": {
+                    "type": "string"
+                },
+                "picture": {
+                    "type": "string"
+                },
+                "status_user": {
+                    "type": "string"
+                },
+                "validated": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "gorm.DeletedAt": {
+            "type": "object",
+            "properties": {
+                "time": {
+                    "type": "string"
+                },
+                "valid": {
+                    "description": "Valid is true if Time is not NULL",
+                    "type": "boolean"
+                }
+            }
+        },
+        "multipart.FileHeader": {
+            "type": "object",
+            "properties": {
+                "filename": {
+                    "type": "string"
+                },
+                "header": {
+                    "$ref": "#/definitions/textproto.MIMEHeader"
+                },
+                "size": {
+                    "type": "integer"
+                }
+            }
+        },
+        "routes.AddCGIRolesResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "status": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            }
+        },
+        "routes.AutentiaPersonParams": {
+            "type": "object",
+            "required": [
+                "dni"
+            ],
+            "properties": {
+                "birthdate": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "dni": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "institution": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "middle_name": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "names": {
+                    "type": "string"
+                },
+                "nro_audit": {
+                    "type": "string"
+                },
+                "users_id": {
+                    "type": "string"
+                },
+                "version_change": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.CGIRoleParams": {
+            "type": "object",
+            "properties": {
+                "country": {
+                    "type": "string"
+                },
+                "dni": {
+                    "type": "string"
+                },
+                "institution": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.CGIRolesResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.CGIUser"
+                    }
+                },
+                "last_offset": {
+                    "type": "integer"
+                },
+                "offset": {
+                    "type": "integer"
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "routes.CGIUserRolesResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/data.CGIUser"
+                }
+            }
+        },
+        "routes.MessageResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "details": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.ModuleParams": {
+            "type": "object",
+            "required": [
+                "checked",
+                "name"
+            ],
+            "properties": {
+                "checked": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.RoleInstParams": {
+            "type": "object",
+            "properties": {
+                "institutions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.Institution"
+                    }
+                },
+                "role": {
+                    "$ref": "#/definitions/data.Role"
+                }
+            }
+        },
+        "routes.UserRoleInstParams": {
+            "type": "object",
+            "properties": {
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/routes.RoleInstParams"
+                    }
+                },
+                "user": {
+                    "$ref": "#/definitions/data.User"
+                }
+            }
+        },
+        "routes.feedBackParams": {
+            "type": "object",
+            "properties": {
+                "browser": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "system": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.feedbackResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "routes.institutionCreateParams": {
+            "type": "object",
+            "required": [
+                "country",
+                "dni",
+                "email",
+                "owner"
+            ],
+            "properties": {
+                "country": {
+                    "type": "string"
+                },
+                "dec": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "dni": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "nemo": {
+                    "type": "string"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "integer"
+                },
+                "verified": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.institutionUpdateParams": {
+            "type": "object",
+            "required": [
+                "country"
+            ],
+            "properties": {
+                "country": {
+                    "type": "string"
+                },
+                "dec": {
+                    "type": "integer"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "integer"
+                }
+            }
+        },
+        "routes.logParams": {
+            "type": "object",
+            "required": [
+                "input",
+                "output",
+                "resource"
+            ],
+            "properties": {
+                "input": {
+                    "type": "string"
+                },
+                "output": {
+                    "type": "string"
+                },
+                "resource": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.loginParams": {
+            "type": "object",
+            "properties": {
+                "user": {
+                    "type": "object",
+                    "required": [
+                        "nickname",
+                        "password"
+                    ],
+                    "properties": {
+                        "nickname": {
+                            "type": "string"
+                        },
+                        "password": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "routes.paramsAutentiaRole": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.paramsDevice": {
+            "type": "object",
+            "properties": {
+                "datajson": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.passwordParams": {
+            "type": "object",
+            "properties": {
+                "country": {
+                    "type": "string"
+                },
+                "institution": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "system": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.recoveryParams": {
+            "type": "object",
+            "required": [
+                "email",
+                "nickname"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "nickname": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.response": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/data.User"
+                }
+            }
+        },
+        "routes.responseAudit": {
+            "type": "object",
+            "properties": {
+                "data": {}
+            }
+        },
+        "routes.responseInstitution": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "description": "Data data.Sensor `json:\"data\"`"
+                }
+            }
+        },
+        "routes.responsePasswords": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "status": {
+                            "type": "boolean"
+                        }
+                    }
+                }
+            }
+        },
+        "routes.responsePerson": {
+            "type": "object",
+            "properties": {
+                "data": {}
+            }
+        },
+        "routes.responseSensor": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/data.Sensor"
+                }
+            }
+        },
+        "routes.responseSensorExport": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.Sensor"
+                    }
+                }
+            }
+        },
+        "routes.responseSensorList": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/data.Sensor"
+                    }
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "routes.responseStorage": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "result": {
+                    "$ref": "#/definitions/routes.storageResult"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
+        },
+        "routes.responseValidation": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "routes.roleBollResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "details": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "routes.roleInstitutionParams": {
+            "type": "object",
+            "required": [
+                "roles"
+            ],
+            "properties": {
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/routes.roleParams"
+                    }
+                }
+            }
+        },
+        "routes.roleModulesResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/routes.rolesUpdateParams"
+                }
+            }
+        },
+        "routes.roleParams": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.roleResp": {
+            "type": "object",
+            "properties": {
+                "checked": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.rolesParams": {
+            "type": "object",
+            "required": [
+                "modules",
+                "name"
+            ],
+            "properties": {
+                "modules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/routes.ModuleParams"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.rolesUpdateParams": {
+            "type": "object",
+            "required": [
+                "modules"
+            ],
+            "properties": {
+                "modules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/routes.ModuleParams"
+                    }
+                }
+            }
+        },
+        "routes.sensorAddParams": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "external": {
+                    "type": "string"
+                },
+                "institution": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "logon": {
+                    "type": "string"
+                },
+                "profile": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.sensorUpdateParams": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "external": {
+                    "type": "string"
+                },
+                "institution": {
+                    "type": "string"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "logon": {
+                    "type": "string"
+                },
+                "profile": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                },
+                "technology": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.storageResult": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.updateUserParams": {
+            "type": "object",
+            "properties": {
+                "country": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "dni": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "nickname": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "status_user": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.userParams": {
+            "type": "object",
+            "required": [
+                "country",
+                "dni",
+                "email",
+                "name",
+                "nickname"
+            ],
+            "properties": {
+                "country": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "dni": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "nickname": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.userRoleParams": {
+            "type": "object",
+            "required": [
+                "institutions",
+                "nickname",
+                "roles"
+            ],
+            "properties": {
+                "institutions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/routes.roleParams"
+                    }
+                },
+                "nickname": {
+                    "type": "string"
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/routes.roleParams"
+                    }
+                }
+            }
+        },
+        "routes.userRoleResponse": {
+            "type": "object",
+            "properties": {
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/routes.roleResp"
+                    }
+                }
+            }
+        },
+        "routes.userStruct": {
+            "type": "object",
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "country": {
+                    "$ref": "#/definitions/data.Country"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "nick_name": {
+                    "type": "string"
+                },
+                "picture": {
+                    "type": "string"
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/routes.roleParams"
+                    }
+                },
+                "status_user": {
+                    "type": "string"
+                },
+                "validated": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "routes.userValidateParams": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "routes.validateParams": {
+            "type": "object",
+            "properties": {
+                "password": {
+                    "type": "string"
+                },
+                "recovery": {
+                    "type": "boolean"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "textproto.MIMEHeader": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "barerToken": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

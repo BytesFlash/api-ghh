@@ -1,4 +1,5 @@
 bin
 .vscode
+pkg/config/main.go
 *.log
 .DS_Store

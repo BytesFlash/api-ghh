@@ -109,13 +109,14 @@ func Create(cfg *config.Config, clt *unleash.Client) {
 	ValidateRoute(router, db, client)
 	ActivateRoute(router, db, client)
 
+	UsersRolesRoute(router, db, client)
+
 	router.Static("/upload", "./upload")
 
 	// Private Routes
 	authorized := router.Group("/", VerifyToken)
 
 	//user
-	UsersRolesRoute(authorized, db, client)
 	UserPostRoute(authorized, db, client)
 	UserInstrospectionRoute(authorized, db, client)
 	UserGetRoute(authorized, db, client)

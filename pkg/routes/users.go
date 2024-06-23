@@ -84,7 +84,7 @@ type userValidateParams struct {
 // @Success 200 {object} []userStruct
 // @failure 404 {object} MessageResponse
 // @Router /users [get]
-func UsersRolesRoute(router *gin.RouterGroup, db *data.DB, client *unleash.Client) {
+func UsersRolesRoute(router *gin.Engine, db *data.DB, client *unleash.Client) {
 	router.GET("/users", func(c *gin.Context) {
 
 		var users []*data.User

@@ -14,9 +14,8 @@ services:
     networks:
       - backend
     volumes:
-      - data:/var/lib/postgresql/api/data
+      - data:/var/lib/postgresql/data
       - ./pg-extensions.sql:/docker-entrypoint-initdb.d/uuid-ossp.sql
-    command: -p 5433
   server:
     restart: 'always'
     build:
@@ -34,6 +33,17 @@ services:
       - DB_TIMEZONE=America/Santiago
       - PORT=4000
       - APP_URL=http://localhost:3000/
+      - SIGN_KEY=8kzz3S4mVmx3BodlQiba
+      - CONTACT_EMAIL=nicolas.dev.py@gmail.com
+      - SENDGRID_KEY=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
+      - WS_USER=AutentiaManager
+      - WS_PASS=4gj=U4A%F5
+      - WS_OPER=0000005555-7
+      - WS_URL=http://cap.autentia.cl/
+      - WS_USER_LATAM=AutentiaManager
+      - WS_PASS_LATAM=4gj=U4A%F5
+      - WS_OPER_LATAM=0000005555-7
+      - WS_URL_LATAM=http://stg.autentia.io/
     depends_on:
       - database
     networks:

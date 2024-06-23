@@ -13,7 +13,6 @@ type Config struct {
 	EnvKeyAppUrl       string `env:"APP_URL" env-default:"http://localhost:3000/"`
 	EnvKeySignKey      string `env:"SIGN_KEY" env-default:"8kzz3S4mVmx3BodlQiba"`
 	EnvKeyContactEmail string `env:"CONTACT_EMAIL" env-default:"nicolas.dev.py@gmail.com"`
-	EnvKeySendgridKey  string `env:"SENDGRID_KEY"`
 
 	EnvKeyPermissionHost  string `env:"PERMISSION_HOST"`
 	EnvKeyPermissionToken string `env:"PERMISSION_TOKEN""`
